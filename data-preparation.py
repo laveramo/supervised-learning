@@ -2,6 +2,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+import joblib  # Pour sauvegarder le scaler
 
 # Charger les jeux de données
 features_file = './alt_acsincome_ca_features_85(1).csv'
@@ -72,6 +73,11 @@ print(X_train_scaled.head())
 
 print("\nAperçu des données standardisées (Ensemble de test) :")
 print(X_test_scaled.head())
+
+# Sauvegarder le scaler pour réutilisation
+scaler_file = 'scaler.pkl'
+joblib.dump(scaler, scaler_file)
+print(f"\nScaler sauvegardé dans le fichier '{scaler_file}'.")
 
 # Sauvegarder les ensembles préparés
 X_train_scaled.to_csv('X_train_scaled.csv', index=False)
